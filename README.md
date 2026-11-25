@@ -7,14 +7,14 @@ FileSense est un logiciel qui range, nettoie et retrouve automatiquement des fic
 ## Objectifs par niveau
 
 ### Niveau 1 — Socle (évaluation intermédiaire)
-- [ ] Scan récursif d'un dossier (nom, taille, dates, type)
+- [x] Scan récursif d'un dossier (nom, taille, dates, type)
 - [ ] Tri par catégories selon des règles
 - [ ] Mode simulation (dry-run)
 - [ ] Gestion des conflits de noms (jamais d'écrasement), des fichiers verrouillés et des permissions
 - [ ] Journal de toutes les opérations
 - [ ] Ligne de commande avec options claires
-- [ ] Script de génération du jeu de test (1 000 puis 10 000 fichiers)
-- [ ] Au moins 10 tests automatisés
+- [x] Script de génération du jeu de test (1 000 puis 10 000 fichiers)
+- [ ] Au moins 10 tests automatisés (3 pour l'instant)
 - [ ] Schéma d'architecture et fichier de configuration
 
 ### Niveau 2 — Avancé (évaluation finale)
@@ -31,14 +31,26 @@ FileSense est un logiciel qui range, nettoie et retrouve automatiquement des fic
 
 ## Installation
 
-_À compléter._
+```bash
+pip install -r requirements.txt
+```
 
 ## Utilisation
 
-_À compléter._
+```bash
+# Générer le jeu de test (1000 fichiers par défaut) dans test_data/
+python scripts/generate_testset.py
+python scripts/generate_testset.py 10000
+
+# Lancer les tests
+pytest
+```
+
+_Le reste sera complété au fur et à mesure._
 
 ## Journal de bord
 
 | Date | Séance | Travail réalisé |
 |------|--------|-----------------|
 | ~11/11/2026 | Séance 1 | Prise de connaissance du sujet : lecture et analyse du sujet FileSense, identification des trois niveaux attendus (socle, avancé, expert), des livrables des deux évaluations, des barèmes et des contraintes principales (aucune perte de fichier, tests uniquement sur des dossiers de test, commits réguliers, usage de l'IA à noter). |
+| 25/11/2026 | Séance 2 | Mise en place de la structure du projet (modules `scanner`, `rules`, `actions`, `journal`, `cli`, dossiers `tests/` et `scripts/`, `config.yaml`, `.gitignore`). Création du générateur de jeu de test (`scripts/generate_testset.py`) : nombre de fichiers en argument, types variés, sous-dossiers, doublons, noms avec accents, noms très longs et fichiers sans extension, sans jamais écraser un fichier existant. Création du scanner récursif (`filesense/scanner.py`) qui récupère nom, taille, dates et extension et gère les erreurs de permission, avec 3 premiers tests automatisés. Préparation de l'oral de la séance suivante. |
